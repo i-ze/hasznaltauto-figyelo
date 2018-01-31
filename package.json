@@ -16,6 +16,10 @@
     "mailgun": "0.5.0",
     "mkdirp": "0.5.1",
     "request": "2.72.0",
-    "scrape-it": "3.1.1"
+    "sync-request": "4.1.0",
+    "scrape-it": "3.1.1",
+    "mailcomposer": "4.0.2",
+    "express": "4.16.2",
+    "pug": "2.0.0-rc.4"
   }
 }

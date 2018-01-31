@@ -1,0 +1,48 @@
+-     var displayElapsedTime = function(postDate) {
+	
+-        var ageSec = (now-postDate) / 1000;
+-        var ageStr ="";
+-        var color="red";
+-        if(isNaN(ageSec)) {
+-           ageStr = "?"
+-           color = "pink"
+-        } else if (ageSec > 3600 * 24) {
+-          ageStr = parseInt(ageSec / 3600 / 24) + ' napja';
+-        } else if(ageSec > 3600) {
+-          color = "#2cd44a";
+-          ageStr = parseInt(ageSec / 3600) + ' órája';
+-        } else {
+-          color = "#3be4bf";
+-          ageStr = parseInt(ageSec / 60) + ' perce';
+-        }
+-        return {"text":ageStr, "color": color};
+-    } 
+
+div(class="car-advert")
+	div(class='car-title') #{carData.title}
+	div(class='car-image')
+		a(href=carData.link, target="_blank")
+			img(src=carData.image)
+	- var desc=carData.description.replace(/\u00a0/g, ' ')
+	- var details=desc.split('·')
+	div(class='car-details')
+		each info, idx in details 
+			| #{info}
+			if idx < details.length -1 
+				span(class='car-detail-separator') |
+		br
+		br
+		if carData.extras.felszereltseg.automata
+			div(class='car-label') Autómata
+		
+		if carData.extras.felszereltseg.tempomat
+			div(class='car-label') Tempomat
+		if carData.extras.felszereltseg.tolatoradar
+			div(class='car-label') Tolatóradar
+		br
+		- var d=carData.extras.imageDate
+		- var now = new Date().getTime()
+		- var elapsed = displayElapsedTime(d)
+		div(style={float:"right","line-height": "2.3em", "color": elapsed.color}) #{ elapsed.text} 
+		
+		span(class='car-price') #{carData.price}
