@@ -121,10 +121,7 @@ function listCars(id, url, done) {
 						attr: "id",
 						convert: function(id) {
 							if (typeof id == "undefined") return "";
-							//id="talalati_79";
 							var regexp = new RegExp(".*(lazy_images)\." + id + "...'([^']+).*", "m");
-							//var regexp = new RegExp(".*(lazy_images\.).*", "gm");
-							//var imgUrl = body.replace(regexp, "xx$1 - $2 xx\n\n\n\n\n");
 							ret = regexp.exec(scriptsText);
 							if (ret == null) {
 							    console.log("UNABLE TO FIND IMAGE URL FOR ID: " + id);
@@ -141,11 +138,22 @@ function listCars(id, url, done) {
 				}
 			}
 		});
-
+		page.cars.map(function(car, index) {
+		    car.priceNumeric = getNumericPrice(car.price);
+		});
 		console.log("A keresés " + page.cars.length + " autót talált.\n");
-
+		if (page.cars.length == 0) {
+		    console.log("missing data here:", body);
+		    fs.writeFile("./public/error.txt", body);
+		}
 		done(null, page);
 	});
+}
+
+function getNumericPrice(text) {
+    //1.343.434 Ft -> 1343434
+    var rx = new RegExp("[\\.\\sa-zA-Z]","g")
+    return parseInt(text.replace(rx,""));
 }
 
 function loadLists() {
@@ -283,6 +291,7 @@ function doWork() {
 					if (!oldItem) {
 						console.log("Új autót találtam!".bgGreen.white);
 						//load extra data!
+						car.originalPriceNumeric = car.priceNumeric;
 						checkAndUpdateCarDetails(car);
 						console.log(
 							car.title.bold + "\n" +
@@ -296,6 +305,7 @@ function doWork() {
 					} else {
 						//ez egy regi elem, az uj elemre masoljuk a korabbi adatait..(vagy toltsuk be ujra, ha hianyzik)
 						car.extras = oldItem.extras;
+						car.originalPriceNumeric = (typeof oldItem.originalPriceNumeric == "undefined" ? getNumericPrice(oldItem.price) : oldItem.originalPriceNumeric);
 						checkAndUpdateCarDetails(car);
 						if (priceChanged) {
 						        console.log("Megváltozott az ár!".bgYellow.black);

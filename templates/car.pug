@@ -2,12 +2,16 @@
 	
 -        var ageSec = (now-postDate) / 1000;
 -        var ageStr ="";
--        var color="red";
+-        var color="#e0a900";
 -        if(isNaN(ageSec)) {
 -           ageStr = "?"
 -           color = "pink"
 -        } else if (ageSec > 3600 * 24) {
--          ageStr = parseInt(ageSec / 3600 / 24) + ' napja';
+-           days = parseInt(ageSec / 3600 / 24);
+-           ageStr = days + " napja";
+-           if (days>30) {
+-            color = "red";
+-           }
 -        } else if(ageSec > 3600) {
 -          color = "#2cd44a";
 -          ageStr = parseInt(ageSec / 3600) + ' órája';
@@ -33,16 +37,22 @@ div(class="car-advert")
 		br
 		br
 		if carData.extras.felszereltseg.automata
-			div(class='car-label') Autómata
+			div(class='car-label') Automata
 		
 		if carData.extras.felszereltseg.tempomat
 			div(class='car-label') Tempomat
 		if carData.extras.felszereltseg.tolatoradar
 			div(class='car-label') Tolatóradar
+		if carData.extras.felszereltseg.muszaki.indexOf('GPS (navigáció)') >= 0
+			div(class='car-label') GPS
 		br
 		- var d=carData.extras.imageDate
 		- var now = new Date().getTime()
 		- var elapsed = displayElapsedTime(d)
 		div(style={float:"right","line-height": "2.3em", "color": elapsed.color}) #{ elapsed.text} 
 		
-		span(class='car-price') #{carData.price}
+		span(class='car-price', data=((carData.priceNumeric == carData.originalPriceNumeric || !carData.priceNumeric) ? "" : (carData.priceNumeric < carData.originalPriceNumeric ? "savings" : "ripoff" ))) 
+			if carData.priceNumeric != carData.originalPriceNumeric
+			a(title=("Eredeti ár: " + carData.originalPriceNumeric))
+				img(class='car-price-icon')
+				span #{carData.price}

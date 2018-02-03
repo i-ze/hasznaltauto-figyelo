@@ -26,6 +26,15 @@ body {
     width: 410px;
     padding: 5px;
     margin: 5px;
+    background-color: #3d455a;
+    border-radius: 4px;
+    box-shadow: 4px 4px 20px 0px #2d313866;
+}
+
+.car-advert:hover {
+    background-color: #565c6d;
+    transition: 0.3s;
+    border: 1px solid #b9d8ff69;
 }
 
 .car-title {
@@ -40,6 +49,10 @@ body {
     margin: 5px 15px 0 0;
 }
 
+.car-image img {
+    padding: 1px;
+}
+
 .car-details {
     width: 250px;
     float: right;
@@ -49,6 +62,18 @@ body {
 .car-price {
     font-size: 16pt;
     font-weight: bold;
+    line-height: 28px;
+}
+
+
+.car-price[data="savings"] {
+    color: #80bc41;
+}
+
+
+
+.car-price[data="ripoff"] {
+    color: red;
 }
 
 .car-detail-separator {
@@ -78,3 +103,32 @@ body {
 .info-value {
     color: #56759e;
 }
+
+
+.car-price-icon {
+    width: 28px;
+    height: 28px;
+    float: left;
+}
+
+
+
+.car-price .car-price-icon {
+    display: none;
+    margin-right: 3px;
+}
+
+.car-price[data="savings"] .car-price-icon {
+    display: block;
+    content: url('../images/save_money.png');
+}
+
+.car-price[data="ripoff"] .car-price-icon {
+    display: block;
+    content: url('../images/ripoff.png');
+    padding-top: 3px;
+    width: 22px;
+    height: 22px;
+    margin-right: 6px;
+}
+
