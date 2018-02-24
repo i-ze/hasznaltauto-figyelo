@@ -27,13 +27,14 @@ div(class="car-advert")
 	div(class='car-image')
 		a(href=carData.link, target="_blank")
 			img(src=carData.image)
-	- var desc=carData.description.replace(/\u00a0/g, ' ')
-	- var details=desc.split('·')
+	- //var desc=carData.description.replace(/\u00a0/g, ' ')
+	- //var details=desc.split('·')
+	- var details = carData.description
 	div(class='car-details')
 		each info, idx in details 
 			| #{info}
 			if idx < details.length -1 
-				span(class='car-detail-separator') |
+				span(class='car-detail-separator')  | 
 		br
 		br
 		if carData.extras.felszereltseg.automata

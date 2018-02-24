@@ -33,8 +33,23 @@ node_modules
 .node_repl_history
 
 # Konfigurációs fájl
-settings.js
+#settings.js
 
 # Adat könyvtár
 data
 
+
+# Package-lock fájl
+package-lock.json
+
+# Release script
+release.sh
+
+# Backup könyvtár
+backup/
+
+# Scripts könyvtár
+scripts/**
+
+# Version.number fájl
+version.number

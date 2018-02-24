@@ -51,6 +51,7 @@ body {
 
 .car-image img {
     padding: 1px;
+    width: 118px;
 }
 
 .car-details {

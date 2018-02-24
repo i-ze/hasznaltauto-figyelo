@@ -12,8 +12,17 @@ html
 			span(class="info-value") #{application.environment}
 		div(class="content")
 			h1 Találatok
-			each type in results
-				div(class='car-search-category')
-					h3= type.name + ' kategória találatai (' + type.lastResult.cars.length  + '):'
-					each carData,idx in type.lastResult.cars
-						include car
+			each site,siteName in results
+				if siteName == "hasznaltauto"
+					h3 Használtautó.hu hirdetései:
+				else if siteName == "joautok"
+					h3 JóAutók.hu hirdetései:
+				else
+					h3 Egyéb oldal találatai:
+
+				each type,i in site
+					div(class='car-search-category')
+						if type.lastResult
+							h3= type.name + ' kategória találatai (' + type.lastResult.cars.length  + '):'
+							each carData,idx in type.lastResult.cars
+								include car
