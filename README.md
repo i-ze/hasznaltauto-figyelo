@@ -26,7 +26,7 @@ node index.js
 Az első indítás során a program hibát jelezhet, hogy nem találja a `config.js` fájlt. Ez esetben a mappában található `config.example.js` fájlt át kell nevezni config.js-re és a benne lévő adatokat megváltoztatni. Ennek leírását lásd a következő részben.
 
 ## Konfigurálás
-Az alkalmazás konfigurációja a `config.js` fájlban található.
+Az alkalmazás konfigurációja a `settings.js` fájlban található.
 A fájl szerkezete a következő:
 ```js
 module.exports = {
@@ -34,11 +34,13 @@ module.exports = {
 	dataDir: "./data",
 
 	searches: [
-		{
-			id: "opel_caravan",
-			name: "Opel Astra Caravan",
-			url: "http://www.hasznaltauto.hu/talalatilista/auto/2G4ZLM6H4LHPDGMCKJQHZDH4T2PHATRPML46HMGZD5WYO4RCKTY1QY69R2S5GSOSA2LWHHFZA4RAMCAMTTFT3HQUMW3F0OZ9RMYDQRLYCCLDQW734RMFTH7Z2GZY31W1Y5WO6UISWJC1H9SOJT9Y8PY4YPLDTJ6905AHHT11QIF2HML0FAC2CIC9YEMGCW0W2EGOKOE9TEP0M1Q8PUF4C7FEJU22745MKGG2TY2F3F7HI5LR2EOTHH9UR2OQ499J2FM0DFAWMK9DQKHE3HZL7TG7LRAS8U1UE4II1IA5KLPZO0K6C1TS7G3ZUFOIUQK26WH61FY0Z7YT6JZRRIYE99KLOGY20WF3JJY6Y2KQAHKEJR6ZRUH970AUOMD/page1"
-		}
+		hasznaltauto: [
+			{
+				id: "opel_caravan",
+				name: "Opel Astra Caravan",
+				url: "http://www.hasznaltauto.hu/talalatilista/auto/2G4ZLM6H4LHPDGMCKJQHZDH4T2PHATRPML46HMGZD5WYO4RCKTY1QY69R2S5GSOSA2LWHHFZA4RAMCAMTTFT3HQUMW3F0OZ9RMYDQRLYCCLDQW734RMFTH7Z2GZY31W1Y5WO6UISWJC1H9SOJT9Y8PY4YPLDTJ6905AHHT11QIF2HML0FAC2CIC9YEMGCW0W2EGOKOE9TEP0M1Q8PUF4C7FEJU22745MKGG2TY2F3F7HI5LR2EOTHH9UR2OQ499J2FM0DFAWMK9DQKHE3HZL7TG7LRAS8U1UE4II1IA5KLPZO0K6C1TS7G3ZUFOIUQK26WH61FY0Z7YT6JZRRIYE99KLOGY20WF3JJY6Y2KQAHKEJR6ZRUH970AUOMD/page1"
+			}
+		]
 	],
 
 	telepulesID: 1843,
