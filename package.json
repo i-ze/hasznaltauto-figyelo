@@ -21,5 +21,8 @@
     "mailcomposer": "4.0.2",
     "express": "4.16.2",
     "pug": "2.0.0-rc.4"
+  },
+  "now": {
+    "alias": "hasznaltauto.now.sh"
   }
 }
